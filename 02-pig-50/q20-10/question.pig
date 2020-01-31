@@ -1,4 +1,4 @@
--- 
+﻿-- 
 -- Pregunta
 -- ===========================================================================
 -- 
@@ -28,3 +28,8 @@ u = LOAD 'data.csv' USING PigStorage(',')
 --
 -- >>> Escriba su respuesta a partir de este punto <<<
 --
+datos = FOREACH data GENERATE firstname,color;
+
+filtro = FILTER datos BY NOT STARTSWITH(color,'b');
+
+store filtro into 'output' USING PigStorage(',');

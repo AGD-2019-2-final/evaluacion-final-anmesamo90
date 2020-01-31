@@ -1,4 +1,4 @@
--- 
+﻿-- 
 -- Pregunta
 -- ===========================================================================
 -- 
@@ -26,3 +26,8 @@ u = LOAD 'data.csv' USING PigStorage(',')
 --
 -- >>> Escriba su respuesta a partir de este punto <<<
 --
+datos = FOREACH data GENERATE firstname, INDEXOF(firstname,'ia',0) as posicion;
+
+filtro = FOREACH datos GENERATE posicion;
+
+store filtro into 'output';

@@ -1,4 +1,4 @@
--- 
+﻿-- 
 -- Pregunta
 -- ===========================================================================
 -- 
@@ -25,4 +25,6 @@ u = LOAD 'data.csv' USING PigStorage(',')
 --
 -- >>> Escriba su respuesta a partir de este punto <<<
 --
+filtro = foreach data generate SUBSTRING(birthday,5,7);
 
+store filtro into 'output' USING PigStorage(' ');

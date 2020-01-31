@@ -1,4 +1,4 @@
--- 
+﻿-- 
 -- Pregunta
 -- ===========================================================================
 -- 
@@ -29,4 +29,8 @@ u = LOAD 'data.csv' USING PigStorage(',')
 --
 -- >>> Escriba su respuesta a partir de este punto <<<
 --
+datos = FOREACH data GENERATE birthday,SUBSTRING(birthday,0,4) AS anio_largo, SUBSTRING(birthday,2,4) AS anio_corto;
 
+filtro = FOREACH datos GENERATE anio_largo,anio_corto;
+
+store filtro into 'output' USING PigStorage(',');

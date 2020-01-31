@@ -1,4 +1,4 @@
--- Pregunta
+﻿-- Pregunta
 -- ===========================================================================
 -- 
 -- Para responder la pregunta use el archivo `data.csv`.
@@ -38,3 +38,8 @@ u = LOAD 'data.csv' USING PigStorage(',')
 --
 -- >>> Escriba su respuesta a partir de este punto <<<
 --
+lista_apellidos = foreach datos generate UCFIRST(apellido),UPPER(apellido),LOWER(apellido);
+
+lista_ordenada = ORDER lista_apellidos BY $0;
+
+store lista_ordenada into 'output' USING PigStorage(',');
